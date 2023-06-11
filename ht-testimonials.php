@@ -44,6 +44,9 @@ if( !class_exists( 'HT_Testimonials' ) ){
 
             require_once( HT_TESTIMONIALS_PATH . 'post-types/class.ht-testimonials-cpt.php' );
             $HTTestimonialsPostType = new HT_Testimonials_Post_Type();
+
+            require_once( HT_TESTIMONIALS_PATH . 'widgets/class.ht-testimonials-widget.php' );
+            $HTTestimonialsWidget = new HT_Testimonials_Widget();
         }
 
          /**
