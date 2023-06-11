@@ -40,8 +40,10 @@ if( !class_exists( 'HT_Testimonials' ) ){
         public function __construct() {
 
             // Define constants used througout the plugin
-            $this->define_constants();           
+            $this->define_constants();
 
+            require_once( HT_TESTIMONIALS_PATH . 'post-types/class.ht-testimonials-cpt.php' );
+            $HTTestimonialsPostType = new HT_Testimonials_Post_Type();
         }
 
          /**
@@ -65,6 +67,7 @@ if( !class_exists( 'HT_Testimonials' ) ){
          * Deactivate the plugin
          */
         public static function deactivate(){
+            unregister_post_type( 'ht-testimonials' );
             flush_rewrite_rules();
         }
 
