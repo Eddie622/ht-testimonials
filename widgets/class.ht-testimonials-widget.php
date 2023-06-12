@@ -6,8 +6,7 @@ class HT_Testimonials_Widget extends WP_Widget {
             'ht-testimonials',
             esc_html__( 'HT Testimonials', 'ht-testimonials' ),
             array( 
-                'description' => esc_html__( 'Display Testimonials', 'ht-testimonials' ), 
-                'classname' => 'ht-testimonials-widget'
+                'description' => esc_html__( 'Display Testimonials', 'ht-testimonials' )
             )
         );
 
@@ -15,6 +14,14 @@ class HT_Testimonials_Widget extends WP_Widget {
                 register_widget( 'HT_Testimonials_Widget' );
             }
         );
+
+        if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
+            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+        }
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_style( 'ht-testimonials-style-css', HT_TESTIMONIALS_URL . 'assets/css/frontend.css', array(), HT_TESTIMONIALS_VERSION, 'all' );
     }
 
     public function form( $instance ) {
