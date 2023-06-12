@@ -47,3 +47,4 @@
     wp_reset_postdata(); 
     endif; 
 ?>
+<a href="<?php echo get_post_type_archive_link( 'ht-testimonials' ); ?>"><?php echo esc_html_e( 'Show More Testimonials', 'ht-testimonials' ); ?></a>
