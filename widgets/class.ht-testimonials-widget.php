@@ -65,7 +65,16 @@ class HT_Testimonials_Widget extends WP_Widget {
     }
 
     public function widget( $args, $instance ) {
+        $title = isset( $instance['title'] ) ? $instance['title'] : esc_html__( 'Testimonials', 'ht-testimonials' );
+        $number = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+        $image = isset( $instance['image'] ) ? (bool) $instance['image'] : false;
+        $occupation = isset( $instance['occupation'] ) ? (bool) $instance['occupation'] : false;
+        $company = isset( $instance['company'] ) ? (bool) $instance['company'] : false;
 
+        echo $args['before_widget'];
+        echo $args['before_title'] . $title . $args['after_title'];
+        require( HT_TESTIMONIALS_PATH . 'views/ht-testimonials_widget.php' );
+        echo $args['after_widget'];
     }
 
     public function update( $new_instance, $old_instance) {
