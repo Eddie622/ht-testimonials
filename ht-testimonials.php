@@ -117,7 +117,19 @@ if( !class_exists( 'HT_Testimonials' ) ){
          * Uninstall the plugin
          */
         public static function uninstall(){
+            delete_option( 'widget_ht-testimonials' );
 
+            $posts = get_posts( 
+                array(
+                    'post_type' => 'ht-testimonials',
+                    'numberposts' => -1,
+                    'post_status' => 'any'
+                ) 
+            );
+
+            foreach( $posts as $post ){
+                wp_delete_post( $post->ID, true );
+            }
         }
 
         public function load_textdomain(){
