@@ -68,7 +68,7 @@ if( !class_exists( 'HT_Testimonials' ) ){
         public function get_archive_template( $template ) {
             if( current_theme_supports( 'ht-testimonials' ) ) {
                 if ( is_post_type_archive ( 'ht-testimonials' ) ) {
-                    $template = HT_TESTIMONIALS_PATH . 'views/templates/archive-ht-testiomonials.php';
+                    $template = HT_TESTIMONIALS_PATH . 'views/templates/archive-ht-testimonials.php';
                 }
             }
             return $template;
@@ -80,7 +80,7 @@ if( !class_exists( 'HT_Testimonials' ) ){
         public function get_single_template( $template ) {
             if( current_theme_supports( 'ht-testimonials' ) ) {
                 if ( is_singular( 'ht-testimonials' ) ) {
-                    $template = HT_TESTIMONIALS_PATH . 'views/templates/single-ht-testiomonials.php';
+                    $template = HT_TESTIMONIALS_PATH . 'views/templates/single-ht-testimonials.php';
                 }
             }
             return $template;
