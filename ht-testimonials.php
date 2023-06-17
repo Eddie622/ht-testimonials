@@ -42,6 +42,8 @@ if( !class_exists( 'HT_Testimonials' ) ){
             // Define constants used througout the plugin
             $this->define_constants();
 
+            $this->load_textdomain();
+
             require_once( HT_TESTIMONIALS_PATH . 'post-types/class.ht-testimonials-cpt.php' );
             $HTTestimonialsPostType = new HT_Testimonials_Post_Type();
 
@@ -61,7 +63,6 @@ if( !class_exists( 'HT_Testimonials' ) ){
             define ( 'HT_TESTIMONIALS_URL', plugin_dir_url( __FILE__ ) );
             define ( 'HT_TESTIMONIALS_VERSION', '1.0.0' );
             define ( 'HT_TESTIMONIALS_OVERRIDE_PATH_DIR', get_stylesheet_directory() . '/ht-testimonials/' );
-            define ( 'HT_TESTIMONIALS_TEXT_DOMAIN', 'ht-testimonials' ); 
         }
 
         /**
@@ -119,6 +120,9 @@ if( !class_exists( 'HT_Testimonials' ) ){
 
         }
 
+        public function load_textdomain(){
+            load_plugin_textdomain( 'ht-testimonials', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+        }
     }
 }
 
