@@ -59,7 +59,9 @@ if( !class_exists( 'HT_Testimonials' ) ){
             // Path/URL to root of this plugin, with trailing slash.
             define ( 'HT_TESTIMONIALS_PATH', plugin_dir_path( __FILE__ ) );
             define ( 'HT_TESTIMONIALS_URL', plugin_dir_url( __FILE__ ) );
-            define ( 'HT_TESTIMONIALS_VERSION', '1.0.0' );     
+            define ( 'HT_TESTIMONIALS_VERSION', '1.0.0' );
+            define ( 'HT_TESTIMONIALS_OVERRIDE_PATH_DIR', get_stylesheet_directory() . '/ht-testimonials/' );
+            define ( 'HT_TESTIMONIALS_TEXT_DOMAIN', 'ht-testimonials' ); 
         }
 
         /**
@@ -68,7 +70,7 @@ if( !class_exists( 'HT_Testimonials' ) ){
         public function get_archive_template( $template ) {
             if( current_theme_supports( 'ht-testimonials' ) ) {
                 if ( is_post_type_archive ( 'ht-testimonials' ) ) {
-                    $template = HT_TESTIMONIALS_PATH . 'views/templates/archive-ht-testimonials.php';
+                    $template = $this->get_template_part_location( 'archive-ht-testimonials.php' );
                 }
             }
             return $template;
@@ -80,10 +82,19 @@ if( !class_exists( 'HT_Testimonials' ) ){
         public function get_single_template( $template ) {
             if( current_theme_supports( 'ht-testimonials' ) ) {
                 if ( is_singular( 'ht-testimonials' ) ) {
-                    $template = HT_TESTIMONIALS_PATH . 'views/templates/single-ht-testimonials.php';
+                    $template = $this->get_template_part_location( 'single-ht-testimonials.php' );
                 }
             }
             return $template;
+        }
+
+        public function get_template_part_location( $file ){
+            if( file_exists( HT_TESTIMONIALS_OVERRIDE_PATH_DIR . $file ) ){
+                $file = HT_TESTIMONIALS_OVERRIDE_PATH_DIR . $file;
+            } else {
+                $file = HT_TESTIMONIALS_PATH . 'views/templates/' . $file;
+            }
+            return $file;
         }
 
         /**
